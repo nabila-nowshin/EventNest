@@ -38,3 +38,8 @@
   font-family: "Mulish", sans-serif;
 }
 
+.swal-error-list {
+  color: #b91c1c;
+  text-align: left;
+  font-size: 1rem;
+}

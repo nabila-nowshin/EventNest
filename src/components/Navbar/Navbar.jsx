@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
 const navLinkClasses = `
@@ -42,9 +42,9 @@ const navLinkClasses = `
 
       {/* Right - Login button */}
       <div className="navbar-end hidden lg:flex md:flex">
-        <button className="ml-4 px-5 text-lg py-2 bg-green-400 text-black font-semibold rounded-full hover:bg-[#3db9b3] transition-colors duration-300">
+        <Link  to={`/login`} className="ml-4 px-5 text-lg py-2 bg-green-400 text-black font-semibold rounded-full hover:bg-[#3db9b3] transition-colors duration-300">
           Login
-        </button>
+        </Link>
       </div>
     </div>
 
