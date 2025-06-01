@@ -2,8 +2,8 @@ import React from 'react';
 
 const Slider = () => {
     return (
-        <div className='bg-[#acb8e4] my-20'>
-            <div className="carousel min-h-[400px] py-20 w-full max-w-11/12 ml-20">
+        <div className='bg-gradient-to-br from-[#acb8e4] to-[#9bb6f1] my-20'>
+            <div className="carousel min-h-[400px] py-20 w-full max-w-11/12 ml-10">
             {/* Slide 1 */}
             <div id="slide1" className="carousel-item relative w-full flex flex-col lg:flex-row items-center h-[400px] ">
                 <img

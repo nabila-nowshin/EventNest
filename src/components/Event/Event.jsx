@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Event = ({event}) => {
     return (
@@ -12,8 +13,8 @@ const Event = ({event}) => {
                 <p><span className="font-semibold text-neutral-600">Date:</span> {event.date}</p>
                 <p><span className="font-semibold text-neutral-600">Location:</span> {event.location}</p>
                 <p><span className="font-semibold text-neutral-600">Entry Fee:</span> {event.entryFee || 'Free'}</p>
-                <div className="card-actions justify-end">
-                <button className="btn btn-sm btn-primary">View More</button>
+                <div className="card-actions justify-end">    
+                <Link to={`/event/${event.id}`} className="btn btn-sm btn-primary">View More</Link>
                 </div>
             </div>
         </div>
