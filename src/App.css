@@ -43,3 +43,7 @@
   text-align: left;
   font-size: 1rem;
 }
+
+a.active {
+  color: rgb(0, 255, 242);
+}

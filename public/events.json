@@ -5,7 +5,8 @@
     "date": "2025-07-12",
     "location": "Dhaka, Bangladesh",
     "category": "Technology",
-    "image": "https://i.ibb.co/TxRF0PXX/img1.jpg",
+    "entry_fee": "500",
+    "thumbnail": "https://i.ibb.co/TxRF0PXX/img1.jpg",
     "description": "Explore the future of AI, Robotics, and IoT with top innovators and tech giants at TechXpo 2025."
   },
   {
@@ -14,7 +15,8 @@
     "date": "2025-06-20",
     "location": "Chattogram, Bangladesh",
     "category": "Food & Drink",
-    "image": "https://i.ibb.co/Fq0scmYv/img2.jpg",
+    "entry_fee": "200",
+    "thumbnail": "https://i.ibb.co/Fq0scmYv/img2.jpg",
     "description": "A vibrant celebration of flavors — street food, gourmet dishes, and cooking workshops from top chefs!"
   },
   {
@@ -23,7 +25,8 @@
     "date": "2025-08-05",
     "location": "Rajshahi, Bangladesh",
     "category": "Art & Culture",
-    "image": "https://i.ibb.co/Pskswp3t/img3.jpg",
+    "entry_fee": "Free",
+    "thumbnail": "https://i.ibb.co/Pskswp3t/img3.jpg",
     "description": "Experience an explosion of creativity with local artists, live mural painting, and hands-on art sessions."
   },
   {
@@ -32,7 +35,8 @@
     "date": "2025-07-01",
     "location": "RUET, Rajshahi",
     "category": "Career & Education",
-    "image": "https://i.ibb.co/27NsWNsz/img4.png",
+    "entry_fee": "100",
+    "thumbnail": "https://i.ibb.co/27NsWNsz/img4.png",
     "description": "Meet top employers, attend resume-building workshops, and discover your career path at this student-driven summit."
   },
   {
@@ -41,7 +45,8 @@
     "date": "2025-09-15",
     "location": "Cox's Bazar, Bangladesh",
     "category": "Music & Entertainment",
-    "image": "https://i.ibb.co/qF0xnKXZ/img5.jpg",
+    "entry_fee": "800",
+    "thumbnail": "https://i.ibb.co/qF0xnKXZ/img5.jpg",
     "description": "Dance to live DJ sets on the beach, with fireworks, neon lights, and the ocean breeze as your backdrop."
   },
   {
@@ -50,7 +55,8 @@
     "date": "2025-06-28",
     "location": "Sylhet, Bangladesh",
     "category": "Technology & Community",
-    "image": "https://i.ibb.co/GQ5cvyck/img6.jpg",
+    "entry_fee": "300",
+    "thumbnail": "https://i.ibb.co/GQ5cvyck/img6.jpg",
     "description": "A platform to empower women in the tech industry. Join inspiring talks, networking, and hands-on coding sessions."
   }
 ]

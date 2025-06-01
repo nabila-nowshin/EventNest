@@ -34,7 +34,7 @@ const EventDetails = () => {
         <div className="max-w-5xl mx-auto p-6">
             <div className="bg-gradient-to-r from-[#f0f4ff] to-[#e0ffe0] rounded-xl shadow-lg p-6">
                 <img
-                src={event.image}
+                src={event.thumbnail}
                 alt={event.name}
                 className="w-full h-80 object-cover rounded-lg mb-6"
                 />
