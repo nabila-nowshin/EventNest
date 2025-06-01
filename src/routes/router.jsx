@@ -2,12 +2,18 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router";
+import homeLayout from "../layouts/homeLayout";
+import Home from "../pages/Home";
+
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <div className="">
-        <p className="color-accent">Hello World</p>
-        <button className="btn btn-primary">hello</button></div>,
+    Component: homeLayout,
+    children: [
+      { index: true, 
+        loader:()=>fetch('/events.json'),
+        Component: Home },
+    ],
   },
 ]);

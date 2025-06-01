@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Navbar = () => {
+const JoinUs = () => {
     return (
         <div>
-            nav
+            join us
         </div>
     );
 };
 
-export default Navbar;
+export default JoinUs;
