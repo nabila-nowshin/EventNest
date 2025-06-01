@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import EventDetails from "../components/EventDetails/EventDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import NotFound from "../pages/NotFound";
 
 
 export const router = createBrowserRouter([
@@ -28,4 +29,8 @@ export const router = createBrowserRouter([
         Component: Register },
     ],
   },
+  {
+    path:'*',
+    Component:NotFound,
+  }
 ]);

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/authContext';
 import Swal from 'sweetalert2';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const Navigate = useNavigate();
@@ -10,9 +11,9 @@ const Register = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        // const name = e.target.name.value;
+        const name = e.target.name.value;
         const email = e.target.email.value;
-        // const url = e.target.url.value;
+        const url = e.target.url.value;
         const password = e.target.password.value;
 
         // Password validation
@@ -35,33 +36,55 @@ const Register = () => {
             return;
         }
 
-        // Create user
+        
         createUser(email, password)
-            .then((res) => {
-            const resUser = res.user;
-            setUser(resUser);
-            Swal.fire({
+        .then((userCredential) => {
+            const user = userCredential.user;
+
+            // Update user profile with name and photo
+            updateProfile(user, {
+            displayName: name,
+            photoURL: url,
+            })
+            .then(() => {
+                setUser({
+                ...user,
+                displayName: name,
+                photoURL: url
+                })
+                // Show success message
+                Swal.fire({
                 icon: 'success',
                 title: 'Registration Successful!',
-                text: 'Redirecting to login...',
+                text: 'Redirecting to Home...',
                 timer: 2000,
-                showConfirmButton: false
+                showConfirmButton: false,
                 });
 
-                // Redirect after 2 seconds (matching the toast duration)
+                // Redirect to login after delay
                 setTimeout(() => {
-                Navigate('/login');
+                Navigate('/');
                 }, 2000);
-        
             })
             .catch((error) => {
-            Swal.fire({
+                // Failed to update profile
+                Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
+                title: 'Profile Update Failed',
                 text: error.message,
+                });
             });
+        })
+        .catch((error) => {
+            // Account creation failed
+            Swal.fire({
+            icon: 'error',
+            title: 'Registration Failed',
+            text: error.message,
             });
-        };
+        });
+    }
+      
 
 
     return (

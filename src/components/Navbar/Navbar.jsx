@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../provider/authContext';
+import toast from 'react-hot-toast';
+import { UserCircle } from 'lucide-react';
+
 
 const Navbar = () => {
-const navLinkClasses = `
-  text-gray-300 text-xl font-bold px-4 py-2 rounded-full relative
-  after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full
-  after:bg-green-400 after:scale-x-0 after:origin-bottom-left
-  after:transition-transform after:duration-300 hover:after:scale-x-100
-`;
+  //context
+  const {user,signOutUser}=useContext(AuthContext);
+
+  const handleLogout = () => {
+  signOutUser()
+      .then(() => {
+        // console.log('logout clicked')
+      toast.success('Logged out successfully! 👋');
+    })
+    .catch((error) => {
+      console.error(error);
+      toast.error('Failed to logout. Try again.');
+    });
+};
+
+  const navLinkClasses = `
+    text-gray-300 text-xl font-bold px-4 py-2 rounded-full relative
+    after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full
+    after:bg-green-400 after:scale-x-0 after:origin-bottom-left
+    after:transition-transform after:duration-300 hover:after:scale-x-100
+  `;
 
   return (
      <div className="navbar bg-base-100 shadow-md py-4 px-4 lg:px-8 max-w-11/12 mx-auto">
@@ -41,11 +60,43 @@ const navLinkClasses = `
       </div>
 
       {/* Right - Login button */}
-      <div className="navbar-end hidden lg:flex md:flex">
-        <Link  to={`/login`} className="ml-4 px-5 text-lg py-2 bg-green-400 text-black font-semibold rounded-full hover:bg-[#3db9b3] transition-colors duration-300">
-          Login
-        </Link>
+      {
+        (user) ? ( <div className='navbar-end'>
+          <div className="relative group mr-4">
+            {user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt="User Avatar"
+                className="w-10 h-10 rounded-full border-2 border-gray-300 cursor-pointer"
+              />
+            ) : (
+              <UserCircle className="w-10 h-10 text-gray-500 cursor-pointer" />
+            )}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-max bg-black text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+              {user?.displayName || 'User'}
+            </div>
+          </div>
+
+      <button 
+        onClick={handleLogout}
+        className="px-5 text-lg py-2 bg-red-400 text-white font-semibold rounded-full hover:bg-red-500 transition-colors duration-300"
+      >
+        Logout
+      </button>
+    </div>):(
+      <div className='navbar-end'>
+        <Link
+      to="/login" 
+      className="ml-4 px-5 text-lg py-2 bg-green-400 text-black font-semibold rounded-full hover:bg-[#3db9b3] transition-colors duration-300"
+    >
+      Login
+    </Link>
       </div>
+       
+    )
+      }
+
+      
     </div>
 
   );
