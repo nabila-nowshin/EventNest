@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
-    const {createUser,setUser}=useContext(AuthContext);
+    const {createUser,setUser,signInWithGoogle}=useContext(AuthContext);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -84,7 +84,14 @@ const Register = () => {
             });
         });
     }
-      
+     
+     const handleGoogleLogin = () => {
+        signInWithGoogle().then((user) => {
+        if (user) {
+            navigate('/'); // Safe and legal place to navigate
+        }
+        });
+    };
 
 
     return (
@@ -145,6 +152,7 @@ const Register = () => {
           </button>
 
           <button
+            onClick={handleGoogleLogin}
             type="button"
             className="btn btn-outline btn-info w-full font-semibold"
           >

@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../provider/authContext';
 import toast from 'react-hot-toast';
-import { UserCircle } from 'lucide-react';
+import { Loader, UserCircle } from 'lucide-react';
 
 
 const Navbar = () => {
   //context
-  const {user,signOutUser}=useContext(AuthContext);
+  const {user,signOutUser,loading}=useContext(AuthContext);
 
   const handleLogout = () => {
   signOutUser()
@@ -60,8 +60,16 @@ const Navbar = () => {
       </div>
 
       {/* Right - Login button */}
+      
       {
-        (user) ? ( <div className='navbar-end'>
+        loading ? 
+        (<div className='navbar-end'>
+          <span class="loading loading-dots loading-md"></span>
+        </div>)
+        
+        :
+        (user) ? ( 
+        <div className='navbar-end'>
           <div className="relative group mr-4">
             {user?.photoURL ? (
               <img
@@ -77,24 +85,25 @@ const Navbar = () => {
             </div>
           </div>
 
-      <button 
-        onClick={handleLogout}
-        className="px-5 text-lg py-2 bg-red-400 text-white font-semibold rounded-full hover:bg-red-500 transition-colors duration-300"
+          <button 
+            onClick={handleLogout}
+            className="px-5 text-lg py-2 bg-red-400 text-white font-semibold rounded-full hover:bg-red-500 transition-colors duration-300"
+          >
+            Logout
+          </button>
+        </div>):
+        (
+        <div className='navbar-end'>
+          <Link
+        to="/login" 
+        className="ml-4 px-5 text-lg py-2 bg-green-400 text-black font-semibold rounded-full hover:bg-[#3db9b3] transition-colors duration-300"
       >
-        Logout
-      </button>
-    </div>):(
-      <div className='navbar-end'>
-        <Link
-      to="/login" 
-      className="ml-4 px-5 text-lg py-2 bg-green-400 text-black font-semibold rounded-full hover:bg-[#3db9b3] transition-colors duration-300"
-    >
-      Login
-    </Link>
-      </div>
-       
+        Login
+      </Link>
+        </div> 
     )
       }
+
 
       
     </div>

@@ -1,15 +1,20 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/authContext";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
 
 const Login = () => {
-    const {signInUser,setUser}=useContext(AuthContext);
-
+    const {signInUser,setUser,signInWithGoogle}=useContext(AuthContext);
+    //for redirect to original after login
+    const location=useLocation();
     const navigate = useNavigate();
 
+
+    //for redirect to original after login
+    const from = location.state?.from?.pathname || "/";
+
+    //email,pass
     const handleSignIn=(e)=>{
         e.preventDefault();
         const email=e.target.email.value;
@@ -19,13 +24,23 @@ const Login = () => {
             const result=res.user;
             toast.success('Logged in successfully! 👋')
             setUser(result)
-            navigate('/');}
+            navigate(from, { replace: true });
+        }
         )
         .catch((error) => {
                 toast.error(`Oops... ${error.message}`);
                 });
         
     }
+
+    //google
+     const handleGoogleLogin = () => {
+        signInWithGoogle().then((user) => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+        });
+    };
 
 
     return (
@@ -66,6 +81,7 @@ const Login = () => {
                 </button>
 
                 <button
+                    onClick={handleGoogleLogin}
                     type="button"
                     className="btn btn-outline btn-info w-full font-semibold"
                 >
