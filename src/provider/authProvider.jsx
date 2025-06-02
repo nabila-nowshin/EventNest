@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { app } from '../firebase/firebase.config';
 import { AuthContext } from './authContext';
 import { signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import toast from 'react-hot-toast';
 
+export const auth=getAuth(app);
 
     export const AuthProvider = ({children}) => {
         const provider = new GoogleAuthProvider();
-        const auth=getAuth(app);
+
         const [user, setUser] = useState(null);
         const [loading, setLoading] = useState(true);
 
@@ -52,9 +53,13 @@ import toast from 'react-hot-toast';
     const signOutUser=()=>{
         return signOut(auth);
     }
-    
+
+    const updateUserProfile = (profile) => {
+        return updateProfile(auth.currentUser, profile)
+  };
+
     return (
-        <AuthContext.Provider value={{user,setUser,createUser,signInUser,signOutUser,loading,setLoading,signInWithGoogle}}>
+        <AuthContext.Provider value={{user,setUser,createUser,signInUser,signOutUser,loading,setLoading,signInWithGoogle,updateUserProfile}}>
             {children}
         </AuthContext.Provider>
     );

@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
+import MyProfile from "../pages/MyProfile";
 
 
 export const router = createBrowserRouter([
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       { path:'/register', 
         loader:()=>fetch('/events.json'),
         Component: Register },
+      {
+        path:'/myProfile',
+        Component:MyProfile,
+      },
     ],
   },
   {

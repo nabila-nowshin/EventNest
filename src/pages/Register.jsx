@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/authContext';
 import Swal from 'sweetalert2';
-import { updateProfile } from 'firebase/auth';
+import { auth } from '../provider/authProvider';
 
 const Register = () => {
     const navigate = useNavigate();
 
-    const {createUser,setUser,signInWithGoogle}=useContext(AuthContext);
+    const {createUser,setUser,signInWithGoogle,updateUserProfile}=useContext(AuthContext);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -39,19 +39,15 @@ const Register = () => {
         
         createUser(email, password)
         .then((userCredential) => {
-            const user = userCredential.user;
-
             // Update user profile with name and photo
-            updateProfile(user, {
+            updateUserProfile({
             displayName: name,
             photoURL: url,
-            })
+            }
+            )
+            .then(() => auth.currentUser.reload())
             .then(() => {
-                setUser({
-                ...user,
-                displayName: name,
-                photoURL: url
-                })
+              setUser({...auth.currentUser});
                 // Show success message
                 Swal.fire({
                 icon: 'success',
@@ -63,7 +59,7 @@ const Register = () => {
 
                 // Redirect to login after delay
                 setTimeout(() => {
-                Navigate('/');
+                navigate('/');
                 }, 2000);
             })
             .catch((error) => {
