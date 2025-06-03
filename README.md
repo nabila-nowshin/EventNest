@@ -1,12 +1,44 @@
-# React + Vite
+# 🎉 Event Explorer – Find What's Happening Around You
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Event Explorer is a modern single-page app where users can discover and explore local events—from tech talks to art exhibitions, sports to workshops. Built with React and Firebase, it offers a smooth experience whether you're browsing or logging in to join the action.
 
-Currently, two official plugins are available:
+## 🌐 Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [eventnest-db7ea.web.app](https://eventnest-db7ea.web.app/)
 
-## Expanding the ESLint configuration
+## ✨ What It Offers
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Simple and secure login with Email/Password or Google
+- Browse a curated list of upcoming events loaded from JSON
+- View full event details and reserve your spot
+- Personalized profile page with update options
+- Password reset support (yes, even pre-fills your email)
+- Protected routes so only logged-in users get the full experience
+- Animated scroll effects and a clean, responsive UI
+- Custom 404 page (because getting lost should still look good)
+
+## ⚙️ Built With
+
+- React + React Router
+- Firebase (auth, config)
+- Tailwind CSS + DaisyUI
+- AOS for animation
+- SweetAlert2 & React Hot Toast for messages
+- Lucide Icons for visual flair
+- Swiper.js for slides
+
+## 📦 Packages Used
+
+```bash
+npm install
+npm install tailwindcss @tailwindcss/vite
+npm i -D daisyui@latest
+npm install react-router
+npm install react-icons
+npm install firebase
+npm install sweetalert2
+npm install react-hot-toast
+npm install lucide-react
+npm install aos
+npm install -g firebase-tools
+```

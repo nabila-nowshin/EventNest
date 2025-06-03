@@ -35,7 +35,7 @@ export const auth=getAuth(app);
             return result.user;//navigate cant be used ,as its not  rendered page
         })
         .catch((error) => {
-            console.error(error);
+           // console.error(error);
             toast.error("Google Sign-In failed.");
         })
         .finally(() => setLoading(false));
