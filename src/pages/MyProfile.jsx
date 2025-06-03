@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../provider/authContext';
 import { auth } from '../provider/authProvider';
 import toast from 'react-hot-toast';
+import Title from '../components/Title';
 
 const MyProfile = () => {
     const {user,updateUserProfile,setUser}=useContext(AuthContext);
@@ -18,7 +19,7 @@ const MyProfile = () => {
         })
         .then(() => auth.currentUser.reload())
         .then(() => {
-        setUser(auth.currentUser);
+        setUser({...auth.currentUser});
         toast.success('Profile updated successfully! 🎉');
         })
         .catch((error) => {
@@ -27,6 +28,7 @@ const MyProfile = () => {
     }
   return (
     <div className='min-h-screen flex items-center justify-center bg-gradient-to-r from-[#ffe0e9] via-[#d7f9f1] to-[#f0faff] p-4'>
+      <Title title="My Profile" />
       <div className="max-w-md w-full p-8 bg-[#2f002d] text-white rounded-2xl shadow-2xl">
         <h2 className="text-3xl font-bold text-center mb-8 text-[#38bdf8]">My Profile</h2>
 

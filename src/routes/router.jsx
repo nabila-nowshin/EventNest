@@ -10,6 +10,9 @@ import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
 import MyProfile from "../pages/MyProfile";
+import Feedback from "../components/Feedback";
+import Loader from "../components/Loader";
+import ForgotPassword from "../pages/ForgotPassword";
 
 
 export const router = createBrowserRouter([
@@ -19,20 +22,35 @@ export const router = createBrowserRouter([
     children: [
       { index: true, 
         loader:()=>fetch('/events.json'),
-        Component: Home },
+        Component: Home, 
+        hydrateFallback: <Loader />
+      },
       { path:'/event/:id', 
         loader:()=>fetch('/events.json'),
-        element:<PrivateRoute><EventDetails></EventDetails></PrivateRoute> },
+        element:<PrivateRoute><EventDetails></EventDetails></PrivateRoute> ,
+         hydrateFallback: <Loader />
+      },
+        
       { path:'/login', 
-        loader:()=>fetch('/events.json'),
-        Component: Login },
-      { path:'/register', 
-        loader:()=>fetch('/events.json'),
-        Component: Register },
+        element: <Login></Login>
+      },
+      { path:'/login/ForgetPassword', 
+        element:<ForgotPassword></ForgotPassword>
+      },
+      { path:'/register',
+        element:<Register></Register>,
+        },
       {
         path:'/myProfile',
-        Component:MyProfile,
+        element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
       },
+      {
+          path:"/feedback",
+          element:
+            <PrivateRoute>
+              <Feedback />
+            </PrivateRoute>
+      }
     ],
   },
   {

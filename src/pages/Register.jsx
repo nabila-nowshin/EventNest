@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/authContext';
 import Swal from 'sweetalert2';
 import { auth } from '../provider/authProvider';
+import Title from '../components/Title';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 
 const Register = () => {
     const navigate = useNavigate();
+
+    const [showPassword,setShowPassword]=useState(false);
 
     const {createUser,setUser,signInWithGoogle,updateUserProfile}=useContext(AuthContext);
 
@@ -92,6 +96,7 @@ const Register = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#ffe0e9] via-[#d7f9f1] to-[#f0faff] p-4">
+          <Title title="Register" />
       <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8 space-y-6">
         <h2 className="text-3xl font-extrabold text-center text-gray-800">Register for EventNest</h2>
 
@@ -129,15 +134,24 @@ const Register = () => {
             />
           </div>
 
-          <div>
+         <div>
             <label className="block mb-1 text-gray-700 font-semibold">Password</label>
-            <input
-              type="password"
-              name='password'
-              placeholder="Create a strong password"
-              className="input input-bordered w-full"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text':'password'}
+                name="password"
+                placeholder="Create a strong password"
+                className="input input-bordered w-full pr-10" 
+                required
+              />
+              <div 
+                onClick={()=>setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-xl text-gray-600 cursor-pointer hover:text-blue-500 transition-colors"
+              >
+               {showPassword ?<LuEyeOff /> :<LuEye></LuEye> } 
+                 
+              </div>
+            </div>
           </div>
 
           <button

@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Event = ({event}) => {
+    
     return (
-        <div className="card bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 shadow-xl border border-base-200 transition-all duration-300 hover:scale-[1.02]">
+         
+    <div data-aos="fade-right"
+        className="card bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 shadow-xl border border-base-200 transition-all duration-300 hover:scale-[1.02]">
             <figure className="h-48 overflow-hidden">
                 <img src={event.thumbnail} alt={event.name} className="object-cover w-full h-full" />
             </figure>
@@ -18,6 +21,10 @@ const Event = ({event}) => {
                 </div>
             </div>
         </div>
+
+
+        
+       
     );
 };
 

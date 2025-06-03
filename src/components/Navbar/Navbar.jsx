@@ -48,6 +48,7 @@ const Navbar = () => {
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52">
             <li><NavLink to="/" className="hover:text-green-400">Home</NavLink></li>
             <li><NavLink to="/myProfile" className="hover:text-green-400">My Profile</NavLink></li>
+            <li><NavLink to="/feedback" className="hover:text-green-400">Feedback</NavLink></li>
             <li><button className="mt-2 bg-green-400 text-black px-4 py-2 rounded-full hover:bg-[#3db9b3]">Login</button></li>
           </ul>
         </div>
@@ -57,6 +58,7 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex md:flex space-x-6">
         <NavLink to="/" className={navLinkClasses}>Home</NavLink>
         <NavLink to="/myProfile" className={navLinkClasses}>My Profile</NavLink>
+        <NavLink to="/feedback" className={navLinkClasses}>FeedBack</NavLink>
       </div>
 
       {/* Right - Login button */}

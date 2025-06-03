@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/authContext";
 import toast from "react-hot-toast";
+import Title from "../components/Title";
 
 
 const Login = () => {
@@ -10,6 +11,9 @@ const Login = () => {
     const location=useLocation();
     const navigate = useNavigate();
 
+    //for forgot pass
+    const [emailForgotten,setEmailForgotten]=useState('')
+    
 
     //for redirect to original after login
     const from = location.state?.from?.pathname || "/";
@@ -45,6 +49,7 @@ const Login = () => {
 
     return (
           <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#c6f5ec] via-[#fce8f0] to-[#d2f3ff] p-4">
+            <Title title="Login" />
             <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8 space-y-6">
                 <h2 className="text-3xl font-extrabold text-center text-gray-800">Login to EventNest</h2>
 
@@ -59,6 +64,10 @@ const Login = () => {
                     placeholder="Enter your email"
                     className="input input-bordered w-full"
                     required
+                    //send this value to forget
+                    onChange={(e)=>{setEmailForgotten(e.target.value)
+                                //console.log(emailForgotten)
+                             }}
                     />
                 </div>
 
@@ -71,6 +80,15 @@ const Login = () => {
                     className="input input-bordered w-full"
                     required
                     />
+                     <div className="text-right mt-1">
+                            <Link
+                            state={{prefilledEmail:emailForgotten}}
+                             to="/login/ForgetPassword" 
+                             className="text-sm text-blue-600 hover:underline"
+                             >
+                                Forgot Password?
+                            </Link>
+                        </div>
                 </div>
 
                 <button
